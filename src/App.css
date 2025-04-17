@@ -1,38 +1,92 @@
-.App {
-  text-align: center;
+* {
+  margin: 0px; 
+  padding: 0px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.bg-purple {
+  background-color: #bb2649;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.headerWrapper .top-strip {
+  padding: 8px 0px;
+}
+
+.headerWrapper .top-strip p {
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.headerWrapper .header {
+  width: 100%;
+  height: auto;
+}
+
+.headerWrapper .header .row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.headerWrapper .header .col-auto {
+  flex: 0 0 auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.headerWrapper .header .col {
+  flex: 1 1 auto;
+  padding-left: 20px;
+}
+
+.headerWrapper img {
+  width: auto;
+  height: 80px;
+  padding: 15px 0px;
+}
+
+.logo-link {
+  display: inline-block;
+}
+
+.headerWrapper .header .countryDrop {
+  width: 150px;
+  height: auto;
+  min-width: 150px;
+  padding: 10px;
+  margin-left: 15px;
+  text-align: left;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.header-flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.location-container {
+  margin-left: 30px;
+}
+
+.headerWrapper .header .part2 .countryDrop .label{
+  font-size: 12px;
+  text-transform: capitalize !important;
+  color: rgba(0,0,0,0.7) !important;
+}
+
+.headerWrapper .header .part2 .countryDrop .name{
+  font-size: 14px;
+  text-transform: capitalize !important;
+  color: rgba(0,0,0,0.8) !important;
+  font-weight: 700;
 }
