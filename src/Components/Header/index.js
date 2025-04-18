@@ -14,14 +14,16 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="container">
-                    <div className="header-flex">
-                        <div className="logo-container">
+                <div className="header">
+                    <div className="container">
+                        <div className="row">
+                            <div className='logoWrapper d-flex align-items-center col-sm-2'>
                             <Link to="/">
                                 <img src={Logo} alt="Logo" />
                             </Link>
+                            </div>
                         </div>
-                        <div className="location-container">
+                        <div className="col-sm-10 d-flex align-items-center part2">
                             <CountryDropdown />
                         </div>
                     </div>

@@ -26,67 +26,50 @@ body {
 .headerWrapper .header {
   width: 100%;
   height: auto;
+  padding: 15px;
+  font-weight: 500;
 }
 
-.headerWrapper .header .row {
-  display: flex;
+.countryDrop {
+  display: flex !important;
   align-items: center;
 }
 
-.headerWrapper .header .col-auto {
-  flex: 0 0 auto;
-}
-
-.headerWrapper .header .col {
-  flex: 1 1 auto;
-  padding-left: 20px;
-}
-
-.headerWrapper img {
-  width: auto;
-  height: 80px;
-  padding: 15px 0px;
-}
-
-.logo-link {
-  display: inline-block;
-}
-
-.headerWrapper .header .countryDrop {
-  width: 150px;
+.logoWrapper img{
+  width: 50%;
   height: auto;
+}
+
+.headerWrapper .header .part2 .countryDrop{
+  width: 150px;
+  height: 60px;
   min-width: 150px;
-  padding: 10px;
-  margin-left: 15px;
+  color: #000 !important;
+  border: 1px solid rgba(0,0,0,0.2) !important;
+  padding: 10px 10px;
+  border-radius: 7px !important;
+}
+
+.headerWrapper .header .part2 .countryDrop{
   text-align: left;
+  justify-content: flex-start !important;
 }
 
-.header-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-}
-
-.header-flex {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 0;
-}
-
-.location-container {
-  margin-left: 30px;
-}
-
-.headerWrapper .header .part2 .countryDrop .label{
-  font-size: 12px;
+.headerWrapper .header .part2 .countryDrop .lable{
+  font-size: 12px !important;
   text-transform: capitalize !important;
-  color: rgba(0,0,0,0.7) !important;
+  color: rgba(0,0,0,0.4);
+  line-height: 16px;
 }
 
 .headerWrapper .header .part2 .countryDrop .name{
-  font-size: 14px;
+  font-size: 14px !important;
   text-transform: capitalize !important;
-  color: rgba(0,0,0,0.8) !important;
+  color: #FFA726;
   font-weight: 700;
+  line-height: 16px;
+}
+
+.headerWrapper .header .part2 .countryDrop span.ml-auto svg{
+  opacity: 0.7;
 }
