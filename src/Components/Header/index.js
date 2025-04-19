@@ -1,6 +1,9 @@
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import CountryDropdown from '../CountryDropdown';
+import { CiSearch } from "react-icons/ci";
+import { FaUser } from "react-icons/fa";
+
 
 const Header = () => {
     return (
@@ -14,20 +17,29 @@ const Header = () => {
                     </div>
                 </div>
 
-                <div className="header">
+                <header className="header">
                     <div className="container">
-                        <div className="row">
-                            <div className='logoWrapper d-flex align-items-center col-sm-2'>
-                            <Link to="/">
-                                <img src={Logo} alt="Logo" />
-                            </Link>
+                        <div className="row align-items-center">
+                            <div className='logoWrapper col-sm-2'>
+                                <Link to="/">
+                                    <img src={Logo} alt="Logo" />
+                                </Link>
+                            </div>
+                            <div className="col-sm-10">
+                                <div className="d-flex align-items-center">
+                                    <CountryDropdown />
+                                    <div className='headerSearch ml-3'>
+                                        <input type='text' placeholder="Search products..." />
+                                        <button><CiSearch /></button>
+                                    </div>
+                                    <div className='part-3 d-flex align-items-center'>
+                                        <button className='circle'><FaUser /></button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="col-sm-10 d-flex align-items-center part2">
-                            <CountryDropdown />
-                        </div>
                     </div>
-                </div>
+                </header>
             </div>
         </>
     );

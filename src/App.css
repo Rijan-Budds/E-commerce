@@ -30,39 +30,52 @@ body {
   font-weight: 500;
 }
 
+/* Row alignment */
+.header .row {
+  display: flex;
+  align-items: center;
+}
+
+/* Logo styling */
+.logoWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.logoWrapper img{
+  width: 80%;
+  height: auto;
+}
+
+/* Country dropdown styling */
 .countryDrop {
   display: flex !important;
   align-items: center;
 }
 
-.logoWrapper img{
-  width: 50%;
-  height: auto;
-}
-
-.headerWrapper .header .part2 .countryDrop{
+.headerWrapper .header .part2 .countryDrop,
+.headerWrapper .header .countryDrop {
   width: 150px;
   height: 60px;
   min-width: 150px;
   color: #000 !important;
   border: 1px solid rgba(0,0,0,0.2) !important;
   padding: 10px 10px;
-  border-radius: 7px !important;
-}
-
-.headerWrapper .header .part2 .countryDrop{
+  border-radius: 10px !important;
   text-align: left;
   justify-content: flex-start !important;
 }
 
-.headerWrapper .header .part2 .countryDrop .lable{
+.headerWrapper .header .countryDrop .lable,
+.headerWrapper .header .part2 .countryDrop .lable {
   font-size: 12px !important;
   text-transform: capitalize !important;
   color: rgba(0,0,0,0.4);
   line-height: 16px;
 }
 
-.headerWrapper .header .part2 .countryDrop .name{
+.headerWrapper .header .countryDrop .name,
+.headerWrapper .header .part2 .countryDrop .name {
   font-size: 14px !important;
   text-transform: capitalize !important;
   color: #FFA726;
@@ -70,6 +83,47 @@ body {
   line-height: 16px;
 }
 
-.headerWrapper .header .part2 .countryDrop span.ml-auto svg{
+.headerWrapper .header .countryDrop span.ml-auto svg,
+.headerWrapper .header .part2 .countryDrop span.ml-auto svg {
   opacity: 0.7;
+}
+
+header .headerSearch {
+  width: 70%;
+  height: 60px;
+  background: #f3f4f7;
+  padding: 10px;
+  position: relative;
+  margin-left: 15px;
+  border: 1px solid rgba(0,0,0,0.1);
+  border-radius: 10px !important;
+}
+
+header .headerSearch input {
+  background: transparent !important;
+  outline: none !important;
+  font-size: 14px;
+  color: rgba(0,0,0,0.8);
+  width: 100%;
+  height: 40px;
+  border: 0px !important;
+  padding: 0px 20px !important;
+}
+
+header .headerSearch button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 100;
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+}
+
+header .headerSearch button svg {
+  font-size: 25px;
 }
