@@ -1,8 +1,10 @@
 import Logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 import CountryDropdown from '../CountryDropdown';
-import { CiSearch } from "react-icons/ci";
+import { FaSearch } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import { IoNotifications } from "react-icons/io5";
+import { IoIosAddCircle } from "react-icons/io";
 
 
 const Header = () => {
@@ -12,7 +14,7 @@ const Header = () => {
                 <div className="top-strip bg-purple">
                     <div className="container">
                         <p className="mb-0 mt-0 text-center">
-                            Please be aware of <b>scam</b> products.
+                            Please be aware of <b>scams.</b>
                         </p>
                     </div>
                 </div>
@@ -30,9 +32,15 @@ const Header = () => {
                                     <CountryDropdown />
                                     <div className='headerSearch ml-3'>
                                         <input type='text' placeholder="Search products..." />
-                                        <button><CiSearch /></button>
+                                        <button><FaSearch /></button>
                                     </div>
-                                    <div className='part-3 d-flex align-items-center ml-auto'>
+                                    <div className='part-3 headerNotify ml-4'>
+                                        <button className='notify'><IoNotifications /> </button>
+                                    </div>
+                                    <div className='part-3 headerPost ml-5'>
+                                        <button className='post'><IoIosAddCircle /></button>
+                                    </div>
+                                    <div className='part-3 d-flex align-items-center ml-5'>
                                         <button className='circle'><FaUser /></button>
                                     </div>
                                 </div>
