@@ -32,7 +32,7 @@ const Header = () => {
                                         <input type='text' placeholder="Search products..." />
                                         <button><CiSearch /></button>
                                     </div>
-                                    <div className='part-3 d-flex align-items-center'>
+                                    <div className='part-3 d-flex align-items-center ml-auto'>
                                         <button className='circle'><FaUser /></button>
                                     </div>
                                 </div>

@@ -127,3 +127,18 @@ header .headerSearch button {
 header .headerSearch button svg {
   font-size: 25px;
 }
+
+.part-3 .circle {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: 15px;
+  color: #333;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  box-shadow: none;
+}
