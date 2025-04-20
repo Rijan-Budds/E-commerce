@@ -22,7 +22,7 @@ const Navigation = () => {
           </div>
           <div className="col-sm-9 navPart2">
             <ul className="list list-inline">
-                <li className="list-inline-item">
+                <li className="list-inline-item mr-4">
                   <p>Top Categories</p>
                   </li>
               <li className="list-inline-item">

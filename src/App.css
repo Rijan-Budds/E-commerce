@@ -209,6 +209,7 @@ nav .allCatTab {
   padding: 8px 30px !important;
   border-radius: 30px !important;
   border: transparent !important;
+  margin-top: 15px !important;
 }
 
 nav .allCatTab * {
@@ -234,3 +235,47 @@ nav .allCatTab .icon1 svg{
 nav .allCatTab .icon2 svg{
   font-size: 15px !important;
 }
+
+.navPart2 {
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.navPart2 .list {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.navPart2 .list-inline-item {
+  list-style: none;
+}
+
+.navPart2 p {
+  margin: 0;
+  font-weight: bold;
+}
+
+.navPart2 .list-inline-item:not(:first-child) {
+  border-radius: 6px;
+  padding: 6px 12px;
+  transition: all 0.2s ease-in-out;
+}
+
+.navPart2 a {
+  text-decoration: none;
+  color: black;
+}
+
+.navPart2 a:hover {
+  color: #0056b3;
+}
+
+nav .navPart2 ul li a:hover{
+  background: #f0faff;
+  color: #0056b3;
+}
+
