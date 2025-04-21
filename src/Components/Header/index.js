@@ -2,7 +2,7 @@ import Logo from "../../assets/logo.png";
 import { Link, replace, useNavigate } from "react-router-dom";
 import CountryDropdown from "../CountryDropdown";
 import { FaUser } from "react-icons/fa";
-import { IoNotifications } from "react-icons/io5";
+import { FaMessage } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
 import SearchBox from "./SearchBox";
 import Button from "@mui/material/Button";
@@ -41,8 +41,8 @@ const Header = () => {
                   <SearchBox />
 
                   <div className="part-3 headerNotify ml-2">
-                    <Button className="notify">
-                      <IoNotifications />{" "}
+                    <Button className="message">
+                      <FaMessage />
                     </Button>
                   </div>
                   <div className="part-3 headerPost ml-4">

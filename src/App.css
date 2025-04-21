@@ -130,7 +130,7 @@ header .headerSearch button {
   color: black;
 }
 .part-3 .circle,
-.part-3 .notify,
+.part-3 .message,
 .part-3 .post {
   background: transparent;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -150,7 +150,7 @@ header .headerSearch button {
 }
 
 .part-3 .circle:hover,
-.part-3 .notify:hover,
+.part-3 .message:hover,
 .part-3 .post:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
@@ -174,7 +174,7 @@ header .headerSearch button svg {
   box-shadow: none;
 }
 
-.part-3 .notify {
+.part-3 .message {
   background: transparent;
   border: none;
   padding: 0;
