@@ -1,5 +1,5 @@
 import Logo from "../../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, replace, useNavigate } from "react-router-dom";
 import CountryDropdown from "../CountryDropdown";
 import { FaUser } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
@@ -9,6 +9,12 @@ import Button from "@mui/material/Button";
 import Navigation from "./Navigation";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLoginClick = () => {
+    navigate('/login', {replace: true});
+  }
+
   return (
     <>
       <div className="headerWrapper">
@@ -45,7 +51,7 @@ const Header = () => {
                     </Button>
                   </div>
                   <div className="part-3 d-flex align-items-center ml-4">
-                    <Button className="circle">
+                    <Button className="circle" onClick={handleLoginClick}>
                       <FaUser />
                     </Button>
                   </div>
