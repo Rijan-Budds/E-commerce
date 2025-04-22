@@ -322,23 +322,21 @@ nav .navPart2 ul li a:hover{
   border-left: 3px solid #ff4d79;
 }
 
+.scrollable-category {
+  overflow-y: auto; /* Enable vertical scrolling */
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+}
+
+.scrollable-category::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+}
+
 .scrollable-category ul {
   width: fit-content;
   padding: 0;
   margin: 0;
-}
-
-.scrollable-category::-webkit-scrollbar {
-  width: 4px;
-}
-
-.scrollable-category::-webkit-scrollbar-thumb {
-  background: #ddd;
-  border-radius: 4px;
-}
-
-.scrollable-category::-webkit-scrollbar-track {
-  background: transparent;
+  height: calc(100vh - 200px); 
 }
 
 .navigation-container {

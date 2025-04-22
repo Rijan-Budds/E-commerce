@@ -1,13 +1,27 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const Category = () => {
   const categoryRefs = useRef([]);
+  const scrollContainerRef = useRef(null);
 
   const handleItemClick = (category, index) => {
     if (document.activeElement === categoryRefs.current[index]) {
       console.log(`Clicked on category: ${category}`);
     }
   };
+
+  // Optional: Auto-scroll to keep focused item visible
+  useEffect(() => {
+    const handleScroll = () => {
+      // You can add logic here to handle scroll events if needed
+    };
+
+    const container = scrollContainerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+      return () => container.removeEventListener('scroll', handleScroll);
+    }
+  }, []);
 
   const categories = [
     "Apparels & Accessories",
@@ -33,7 +47,7 @@ const Category = () => {
   return (
     <div className="navigation-wrapper">
       <nav className="main-nav category-nav">
-        <div className="scrollable-category">
+        <div className="scrollable-category" ref={scrollContainerRef}>
           <ul>
             {categories.map((category, index) => (
               <li 
