@@ -318,18 +318,17 @@ nav .navPart2 ul li a:hover{
   background-color: rgba(255, 77, 121, 0.05);
   color: #ff4d79;
   transform: translateX(4px);
-  /* Visual indicator */
   border-left: 3px solid #ff4d79;
 }
 
 .scrollable-category {
-  overflow-y: auto; /* Enable vertical scrolling */
-  scrollbar-width: none; /* Hide scrollbar for Firefox */
-  -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+  overflow-y: auto; 
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 
 .scrollable-category::-webkit-scrollbar {
-  display: none; /* Hide scrollbar for Chrome, Safari and Opera */
+  display: none; 
 }
 
 .scrollable-category ul {
@@ -346,4 +345,27 @@ nav .navPart2 ul li a:hover{
 .category-nav {
   height: 100%;
   width: 100%;
+}
+
+/* Add this to your App.css */
+.login-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+.login-container h2 {
+  color: #bb2649; /* Your purple color */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-container .btn-primary {
+  background-color: #bb2649;
+  border-color: #bb2649;
+}
+
+.login-container .btn-primary:hover {
+  background-color: #9a1d3a;
+  border-color: #9a1d3a;
 }
