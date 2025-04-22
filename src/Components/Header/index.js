@@ -7,6 +7,7 @@ import { IoIosAddCircle } from "react-icons/io";
 import SearchBox from "./SearchBox";
 import Button from "@mui/material/Button";
 import Navigation from "./Navigation";
+import Category from "./Category";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -62,7 +63,7 @@ const Header = () => {
         </header>
 
         <Navigation />
-
+        <Category />
       </div>
     </>
   );

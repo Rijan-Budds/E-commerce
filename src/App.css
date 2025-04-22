@@ -279,3 +279,73 @@ nav .navPart2 ul li a:hover{
   color: #0056b3;
 }
 
+.navigation-wrapper {
+  background-color: #ffffff;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+  margin-bottom: 0;
+  border-right: 1px solid #e0e0e0; 
+}
+
+.navigation-wrapper .container {
+  padding: 0;
+  max-width: 100%;
+}
+
+.main-nav {
+  padding-left: 200px; 
+}
+
+.main-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.main-nav li {
+  padding: 10px 16px;
+  margin-bottom: 6px;
+  background-color: transparent; 
+  border-radius: 0;
+  color: #333;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.main-nav li:hover {
+  background-color: transparent;
+  color: #ff4d79; 
+  transform: translateX(4px);
+}
+
+.scrollable-category {
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.5rem 0;
+  background-color: #ffffff;
+}
+
+.scrollable-category::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollable-category::-webkit-scrollbar-thumb {
+  background: #ddd;
+  border-radius: 4px;
+}
+
+.scrollable-category::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.navigation-container {
+  height: 100%;
+}
+
+.category-nav {
+  height: 100%;
+  width: 100%;
+}

@@ -26,7 +26,7 @@ const Navigation = () => {
                   <p>Top Categories</p>
                   </li>
               <li className="list-inline-item">
-                <Link to="/">Mobile Phones</Link>
+                <Link to="/">Mobile Phones </Link>
               </li>
               <li className="list-inline-item">
                 <Link to="/">Want To Buy(Buyer's list)</Link>
