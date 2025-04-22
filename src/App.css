@@ -291,6 +291,7 @@ nav .navPart2 ul li a:hover{
 
 .main-nav {
   padding-left: 200px; 
+  padding-top: 15px;
 }
 
 .main-nav ul {
@@ -299,7 +300,7 @@ nav .navPart2 ul li a:hover{
   margin: 0;
 }
 
-.main-nav li {
+  .main-nav li {
   padding: 10px 16px;
   margin-bottom: 6px;
   background-color: transparent; 
@@ -308,20 +309,23 @@ nav .navPart2 ul li a:hover{
   font-weight: 400;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  display: block;
+  width: fit-content;
+  position: relative;
 }
 
 .main-nav li:hover {
-  background-color: transparent;
-  color: #ff4d79; 
+  background-color: rgba(255, 77, 121, 0.05);
+  color: #ff4d79;
   transform: translateX(4px);
+  /* Visual indicator */
+  border-left: 3px solid #ff4d79;
 }
 
-.scrollable-category {
-  max-height: calc(100vh - 120px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  padding: 0.5rem 0;
-  background-color: #ffffff;
+.scrollable-category ul {
+  width: fit-content;
+  padding: 0;
+  margin: 0;
 }
 
 .scrollable-category::-webkit-scrollbar {
