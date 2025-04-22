@@ -270,13 +270,9 @@ nav .allCatTab .icon2 svg{
   color: black;
 }
 
-.navPart2 a:hover {
-  color: #0056b3;
-}
-
 nav .navPart2 ul li a:hover{
   background: #f0faff;
-  color: #0056b3;
+  color: #ff4d79; 
 }
 
 .navigation-wrapper {
