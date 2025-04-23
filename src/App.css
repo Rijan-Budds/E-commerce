@@ -347,25 +347,63 @@ nav .navPart2 ul li a:hover{
   width: 100%;
 }
 
-/* Add this to your App.css */
+/* Updated App.css for login page to match dashboard vibe */
 .login-container {
-  max-width: 500px;
-  margin: 50px auto;
-  padding: 20px;
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px 25px;
+  background: #ffffff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  font-family: 'Poppins', 'Helvetica', 'Arial', sans-serif;
 }
 
 .login-container h2 {
-  color: #bb2649; /* Your purple color */
+  color: #bb2649; /* same as your dashboard theme */
   text-align: center;
+  font-weight: 600;
+  margin-bottom: 25px;
+  font-size: 24px;
+}
+
+.login-container .form-group {
   margin-bottom: 20px;
 }
 
+.login-container .form-control {
+  height: 45px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 10px 15px;
+  font-size: 14px;
+}
+
+.login-container .form-control:focus {
+  border-color: #bb2649;
+  box-shadow: 0 0 0 2px rgba(187, 38, 73, 0.2);
+  outline: none;
+}
+
 .login-container .btn-primary {
+  width: 100%;
+  height: 45px;
   background-color: #bb2649;
   border-color: #bb2649;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .login-container .btn-primary:hover {
   background-color: #9a1d3a;
   border-color: #9a1d3a;
+}
+
+.login-container p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #666;
 }

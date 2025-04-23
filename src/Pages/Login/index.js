@@ -1,45 +1,55 @@
 import React, { useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     
     function handleSubmit(event) {
         event.preventDefault();
-        axios.post("http://localhost:8081/login", { email, password })
-        .then(res => console.log(res))
+        axios.post("http://localhost:8081/login", { username, password })
+        .then(res => {
+            console.log(res);
+            if (res.data.status === "success") {
+                navigate("/loggedin");
+            } else {
+                alert("Invalid credentials!");
+            }
+        })
         .catch(err => console.log(err)); 
     }
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-            <div className="p-3 bg-white w-25 shadow rounded">
+        <div className="d-flex justify-content-center align-items-center vh-100" style={{ backgroundColor: "#f8f9fa" }}>
+            <div className="login-container">
+                <h2>Login</h2>
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="email">Email</label>
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
                         <input 
-                            type="email" 
-                            id="email"
-                            placeholder="Email" 
+                            type="text" 
+                            id="username"
+                            placeholder="Enter username" 
                             className="form-control" 
-                            onChange={e => setEmail(e.target.value)} 
+                            onChange={e => setUsername(e.target.value)} 
                             required 
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="form-group">
                         <label htmlFor="password">Password</label>
                         <input 
                             type="password" 
                             id="password"
-                            placeholder="Password" 
+                            placeholder="Enter password" 
                             className="form-control" 
                             onChange={e => setPassword(e.target.value)} 
                             required 
                         />
                     </div>
-                    <button type="submit" className="btn btn-success w-100">Login</button>
+                    <button type="submit" className="btn btn-primary mt-3">Login</button>
                 </form>    
             </div>        
         </div>
