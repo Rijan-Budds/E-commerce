@@ -13,7 +13,15 @@ const Header = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    navigate('/login', {replace: true});
+    navigate('/login');
+  }
+
+  const handleChats = () => {
+    navigate('/chats');
+  }
+  
+  const handlePost = () => {
+    navigate('/post');
   }
 
   return (
@@ -42,12 +50,12 @@ const Header = () => {
                   <SearchBox />
 
                   <div className="part-3 headerNotify ml-2">
-                    <Button className="message">
+                    <Button className="message" onClick={handleChats}>
                       <FaMessage />
                     </Button>
                   </div>
                   <div className="part-3 headerPost ml-4">
-                    <Button className="post">
+                    <Button className="post" onClick={handlePost}>
                       <IoIosAddCircle />
                     </Button>
                   </div>
