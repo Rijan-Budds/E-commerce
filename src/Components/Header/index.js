@@ -1,6 +1,5 @@
 import Logo from "../../assets/logo.png";
 import { Link, replace, useNavigate } from "react-router-dom";
-import CountryDropdown from "../CountryDropdown";
 import { FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { IoIosAddCircle } from "react-icons/io";
@@ -45,8 +44,6 @@ const Header = () => {
               </div>
               <div className="col-sm-10">
                 <div className="d-flex align-items-center">
-                  <CountryDropdown />
-
                   <SearchBox />
 
                   <div className="part-3 headerNotify ml-2">
