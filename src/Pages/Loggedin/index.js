@@ -1,4 +1,4 @@
-export function Loggedin() {
+export default function Loggedin() {
   return (
     <div className="container">
       <div className="row">

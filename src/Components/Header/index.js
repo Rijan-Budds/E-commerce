@@ -38,9 +38,11 @@ const Header = () => {
           <div className="container">
             <div className="row align-items-center">
               <div className="logoWrapper col-sm-2">
+                <Button>
                 <Link to="/">
                   <img src={Logo} alt="Logo" />
                 </Link>
+                </Button>
               </div>
               <div className="col-sm-10">
                 <div className="d-flex align-items-center">

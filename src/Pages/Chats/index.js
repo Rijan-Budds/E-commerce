@@ -1,4 +1,4 @@
-export function Chats() {
+export default function Chats() {
   return (
     <div className="container">
       <div className="row">

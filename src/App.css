@@ -308,7 +308,6 @@ nav .navPart2 ul li a:hover{
   width: 100%;
 }
 
-/* Updated App.css for login page to match dashboard vibe */
 .login-container {
   max-width: 400px;
   margin: 80px auto;
@@ -321,7 +320,7 @@ nav .navPart2 ul li a:hover{
 }
 
 .login-container h2 {
-  color: #bb2649; /* same as your dashboard theme */
+  color: #bb2649;
   text-align: center;
   font-weight: 600;
   margin-bottom: 25px;
@@ -368,3 +367,4 @@ nav .navPart2 ul li a:hover{
   font-size: 14px;
   color: #666;
 }
+
