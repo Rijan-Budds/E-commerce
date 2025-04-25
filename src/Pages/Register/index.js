@@ -1,17 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const navigate = useNavigate();
+  const [fname, setFname] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleLogin = () => {
     navigate("/login");
   };
 
-  const handleHome = () => {
-    navigate("/");
-  };
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    // Send registration request to the backend
+    axios
+      .post("http://localhost:8081/register", {fname, username, password })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status === "success") {
+          alert("Registration successful!");
+          navigate("/login"); // Redirect to login page after successful registration
+        } else {
+          alert(res.data.message); // Show error message from the backend
+        }
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <div
@@ -19,20 +37,27 @@ export default function Register() {
       style={{ backgroundColor: "#f8f9fa" }}
     >
       <div className="login-container">
-        <div className="d-flex justify-content-between mb-3">
-          <button onClick={handleHome} className="btn btn-outline-secondary">
-            <i className="bi bi-house-door"></i> Home
-          </button>
-        </div>
         <h2>Register</h2>
-        <form>
+        <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="username">Email</label>
+            <label htmlFor="fname">Username</label>
+            <input
+              type="text"
+              id="fname"
+              placeholder="Enter Username"
+              className="form-control"
+              onChange={(e) => setFname(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="username"
-              placeholder="Enter Email"
+              placeholder="Enter email"
               className="form-control"
+              onChange={(e) => setUsername(e.target.value)}
               required
             />
           </div>
@@ -41,8 +66,9 @@ export default function Register() {
             <input
               type="password"
               id="password"
-              placeholder="Enter Password"
+              placeholder="Enter password"
               className="form-control"
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [fname, setFname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -19,11 +20,11 @@ export default function Login() {
   function handleSubmit(event) {
     event.preventDefault();
     axios
-      .post("http://localhost:8081/login", { username, password })
+      .post("http://localhost:8081/login", { fname, username, password })
       .then((res) => {
         console.log(res);
         if (res.data.status === "success") {
-          navigate("/loggedin");
+          navigate("/profile");
         } else {
           alert("Invalid credentials!");
         }
@@ -44,6 +45,17 @@ export default function Login() {
         </div>
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
+        <div className="form-group">
+            <label htmlFor="fname">Username</label>
+            <input
+              type="text"
+              id="fname"
+              placeholder="Enter username"
+              className="form-control"
+              onChange={(e) => setFname(e.target.value)}
+              required
+            />
+          </div>
           <div className="form-group">
             <label htmlFor="username">Email</label>
             <input
