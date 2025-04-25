@@ -7,21 +7,22 @@ import SearchBox from "./SearchBox";
 import Button from "@mui/material/Button";
 import Navigation from "./Navigation";
 import Category from "./Category";
+import AlertGif from "../../assets/alert.gif";
 
 const Header = () => {
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
-    navigate('/login');
-  }
+    navigate("/login");
+  };
 
   const handleChats = () => {
-    navigate('/chats');
-  }
-  
+    navigate("/chats");
+  };
+
   const handlePost = () => {
-    navigate('/post');
-  }
+    navigate("/post");
+  };
 
   return (
     <>
@@ -39,9 +40,9 @@ const Header = () => {
             <div className="row align-items-center">
               <div className="logoWrapper col-sm-2">
                 <Button>
-                <Link to="/">
-                  <img src={Logo} alt="Logo" />
-                </Link>
+                  <Link to="/">
+                    <img src={Logo} alt="Logo" />
+                  </Link>
                 </Button>
               </div>
               <div className="col-sm-10">
@@ -68,6 +69,13 @@ const Header = () => {
             </div>
           </div>
         </header>
+        <div className="gif-wrapper text-center">
+          <img
+            src={AlertGif}
+            alt="Alert GIF"
+            className="w-full max-w-xs mx-auto"
+          />
+        </div>
 
         <Navigation />
         <Category />

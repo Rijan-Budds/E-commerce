@@ -41,7 +41,6 @@ const PostCreation = () => {
       [name]: type === 'checkbox' ? checked : value
     }));
     
-    // Clear error when user starts typing
     if (errors[name]) {
       setErrors(prev => ({ ...prev, [name]: '' }));
     }
@@ -164,9 +163,24 @@ const PostCreation = () => {
             className={errors.category ? 'error' : ''}
           >
             <option value="">Select Category</option>
-            <option value="electronics">Electronics</option>
-            <option value="furniture">Furniture</option>
-            <option value="clothing">Clothing</option>
+            <option value="electronics">Apparels & Accessories</option>
+            <option value="furniture">Automobiles</option>
+            <option value="clothing">Beauty and health</option>
+            <option value="clothing">Books and learning</option>
+            <option value="clothing">Business and industry</option>
+            <option value="clothing">Computers and peripherals</option>
+            <option value="clothing">Electronics, TVs and more</option>
+            <option value="clothing">Events and Happenings</option>
+            <option value="clothing">Jobs</option>
+            <option value="clothing">Music Instruments</option>
+            <option value="clothing">Mobile Phones and Accessories</option>
+            <option value="clothing">Pets for adoption</option>
+            <option value="clothing">Toys and video games</option>
+            <option value="clothing">Travel, Tours and Packages</option>
+            <option value="clothing">Services</option>
+            <option value="clothing">Furnishing and Appliances</option>
+            <option value="clothing">Fresh vegetables and meat</option>
+            <option value="clothing">Want to buy</option>
           </select>
           {errors.category && <span className="error-message">{errors.category}</span>}
           
