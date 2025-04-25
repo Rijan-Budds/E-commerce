@@ -20,7 +20,7 @@ function handleDbConnection() {
     db.connect(err => {
         if (err) {
             console.error('Error connecting to DB:', err);
-            setTimeout(handleDbConnection, 2000); 
+            setTimeout(handleDbConnection, 2000);
         } else {
             console.log('Connected to MySQL database.');
         }
@@ -36,13 +36,16 @@ function handleDbConnection() {
     });
 }
 
-handleDbConnection(); 
+handleDbConnection();
 
+// Login route
 app.post('/login', (req, res) => {
     console.log("Login request received:", req.body);
 
-    const sql = "SELECT * FROM login WHERE username = ? AND password = ?";
-    db.query(sql, [req.body.username, req.body.password], (err, data) => {
+    const { fname, username, password } = req.body;
+
+    const sql = "SELECT * FROM login WHERE fname = ? AND username = ? AND password = ?";
+    db.query(sql, [fname, username, password], (err, data) => {
         if (err) {
             console.error("Query Error:", err);
             return res.json({ status: "error", message: "Database error" });
@@ -55,30 +58,34 @@ app.post('/login', (req, res) => {
     });
 });
 
-app.listen(8081, () => {
-    console.log('Server is running on port 8081');
-});
-
-//this is wil be the register page
+// Register route
 app.post('/register', (req, res) => {
-    console.log("Registration successful", req.body);
+    console.log("Registration request received:", req.body);
 
-    const {username, password} = req.body;
+    const { fname, username, password } = req.body;
 
     const checkSql = "SELECT * FROM login WHERE username = ?";
     db.query(checkSql, [username], (err, data) => {
-        if(err){
-            console.error({status: "ERROR", message: "Database error"});
-            return res.json({status:"ERROR", message: "User already exists"});
+        if (err) {
+            console.error("Query Error:", err);
+            return res.json({ status: "error", message: "Database error" });
         }
 
-        const insertSql = "INSERT INTO login (username, password) VALUES (?, ?)";
-        db.query(insertSql, [username, password], (err, result) => {
-            if(err){
+        if (data.length > 0) {
+            return res.json({ status: "exists", message: "User already exists" });
+        }
+
+        const insertSql = "INSERT INTO login (fname, username, password) VALUES (?, ?, ?)";
+        db.query(insertSql, [fname, username, password], (err, result) => {
+            if (err) {
                 console.error("Query Error:", err);
-                return res.json({status: "error", message: "database error"});
+                return res.json({ status: "error", message: "Failed to register user" });
             }
-            return res.json({status:"success", message:"user registered."});
+            return res.json({ status: "success", message: "User registered successfully" });
         });
     });
+});
+
+app.listen(8081, () => {
+    console.log('Server is running on port 8081');
 });
