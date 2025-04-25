@@ -23,7 +23,7 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         if (res.data.status === "success") {
-          navigate("/loggedin");
+          navigate("/profile");
         } else {
           alert("Invalid credentials!");
         }

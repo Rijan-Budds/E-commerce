@@ -58,3 +58,27 @@ app.post('/login', (req, res) => {
 app.listen(8081, () => {
     console.log('Server is running on port 8081');
 });
+
+//this is wil be the register page
+app.post('/register', (req, res) => {
+    console.log("Registration successful", req.body);
+
+    const {username, password} = req.body;
+
+    const checkSql = "SELECT * FROM login WHERE username = ?";
+    db.query(checkSql, [username], (err, data) => {
+        if(err){
+            console.error({status: "ERROR", message: "Database error"});
+            return res.json({status:"ERROR", message: "User already exists"});
+        }
+
+        const insertSql = "INSERT INTO login (username, password) VALUES (?, ?)";
+        db.query(insertSql, [username, password], (err, result) => {
+            if(err){
+                console.error("Query Error:", err);
+                return res.json({status: "error", message: "database error"});
+            }
+            return res.json({status:"success", message:"user registered."});
+        });
+    });
+});

@@ -3,7 +3,7 @@ export default function Loggedin() {
     <div className="container">
       <div className="row">
         <div className="col-sm-12">
-          <h1>Logged In</h1>
+          <h1>Profile</h1>
           <p>This is the Logged In component.</p>
         </div>
       </div>
