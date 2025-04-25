@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,13 @@ export default function Login() {
   const [fname, setFname] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (isLoggedIn) {
+      navigate("/profile");
+    }
+  }, [navigate]);
 
   const handleRegister = () => {
     navigate("/register");
@@ -24,6 +31,7 @@ export default function Login() {
       .then((res) => {
         console.log(res);
         if (res.data.status === "success") {
+          localStorage.setItem("isLoggedIn", "true");
           navigate("/profile");
         } else {
           alert("Invalid credentials!");
@@ -45,7 +53,7 @@ export default function Login() {
         </div>
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
-        <div className="form-group">
+          <div className="form-group">
             <label htmlFor="fname">Username</label>
             <input
               type="text"
