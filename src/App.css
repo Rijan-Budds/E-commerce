@@ -368,3 +368,118 @@ nav .navPart2 ul li a:hover{
   color: #666;
 }
 
+.post-creation {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  font-family: "Poppins", sans-serif;
+}
+
+.progress-steps {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 30px;
+  color: #bb2649;
+  font-size: 18px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.step h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+.step input[type="text"],
+.step input[type="number"],
+.step select,
+.step textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.step input[type="file"] {
+  font-size: 14px;
+}
+
+.step textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.step input:focus,
+.step select:focus,
+.step textarea:focus {
+  border-color: #bb2649;
+  box-shadow: 0 0 0 2px rgba(187, 38, 73, 0.2);
+}
+
+.error {
+  border-color: #ff4d79;
+}
+
+.error-message {
+  color: #ff4d79;
+  font-size: 13px;
+  margin-top: -15px;
+}
+
+.preview-image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 10px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.step button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background-color: #bb2649;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.step button:hover {
+  background-color: #9a1d3a;
+}
+
+.step button.disabled {
+  background-color: #ddd;
+  color: #999;
+  cursor: not-allowed;
+}
+
+label {
+  font-size: 14px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
