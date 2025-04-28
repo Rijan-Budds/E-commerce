@@ -1,11 +1,20 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const multer = require('multer');
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    credentials: true,             
+  };
+  app.use(cors(corsOptions));
+  
+app.use('/uploads', express.static('uploads'));
 
 let db;
 
@@ -38,7 +47,6 @@ function handleDbConnection() {
 
 handleDbConnection();
 
-// Login route
 app.post('/login', (req, res) => {
     console.log("Login request received:", req.body);
 
@@ -58,7 +66,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Register route
 app.post('/register', (req, res) => {
     console.log("Registration request received:", req.body);
 
@@ -85,6 +92,63 @@ app.post('/register', (req, res) => {
         });
     });
 });
+
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        const uploadPath = 'uploads/';
+        if (!fs.existsSync(uploadPath)) {
+            fs.mkdirSync(uploadPath);
+        }
+        cb(null, uploadPath);
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
+        const ext = path.extname(file.originalname);
+        cb(null, file.fieldname + '-' + uniqueSuffix + ext);
+    }
+});
+
+const upload = multer({ storage });
+
+app.post('/api/posts', upload.single('photo'), (req, res) => {
+    console.log("Post creation request received:", req.body);
+
+    const { title, category, conditions, description, price, negotiable } = req.body;
+    const photo = req.file ? req.file.filename : null;
+
+    if (!title || !category || !conditions || !description || !price || !photo) {
+        return res.json({ status: "error", message: "All fields are required" });
+    }
+
+    const insertSql = `
+        INSERT INTO posts (title, photo, category, conditions, description, price, negotiable)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    `;
+
+    db.query(
+        insertSql,
+        [title, photo, category, conditions, description, parseFloat(price), negotiable === 'true' ? 1 : 0],
+        (err, result) => {
+            if (err) {
+                console.error("Query Error:", err);
+                return res.json({ status: "error", message: "Database error while creating post" });
+            }
+            return res.json({ status: "success", message: "Post created successfully", postId: result.insertId });
+        }
+    );
+});
+
+app.get('/api/posts', (req, res) => {
+    const sql = "SELECT * FROM posts ORDER BY created_at DESC"; // newest first
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error("Error fetching posts:", err);
+            return res.json({ status: "error", message: "Database error" });
+        }
+        return res.json({ status: "success", data: data });
+    });
+});
+
 
 app.listen(8081, () => {
     console.log('Server is running on port 8081');

@@ -56,7 +56,6 @@ const PostCreation = () => {
       };
       reader.readAsDataURL(file);
       
-      // Clear photo error when file is selected
       if (errors.photo) {
         setErrors(prev => ({ ...prev, photo: '' }));
       }
@@ -82,7 +81,7 @@ const PostCreation = () => {
       });
 
       try {
-        const response = await fetch('/api/posts', {
+        const response = await fetch('http://localhost:8081/api/posts', {
           method: 'POST',
           body: formData,
           credentials: 'include'
@@ -99,7 +98,6 @@ const PostCreation = () => {
     }
   };
 
-  // Check if current step is valid to enable next button
   const isStepValid = () => {
     if (step === 1) {
       return post.title.trim() && post.photo;

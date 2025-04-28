@@ -16,16 +16,15 @@ export default function Register() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    // Send registration request to the backend
     axios
       .post("http://localhost:8081/register", {fname, username, password })
       .then((res) => {
         console.log(res);
         if (res.data.status === "success") {
           alert("Registration successful!");
-          navigate("/login"); // Redirect to login page after successful registration
+          navigate("/login"); 
         } else {
-          alert(res.data.message); // Show error message from the backend
+          alert(res.data.message); 
         }
       })
       .catch((err) => console.log(err));
