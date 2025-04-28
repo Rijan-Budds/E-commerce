@@ -82,7 +82,7 @@ const PostCreation = () => {
       });
 
       try {
-        const response = await fetch('/api/posts', {
+        const response = await fetch('http://localhost:8081/api/posts', {
           method: 'POST',
           body: formData,
           credentials: 'include'
