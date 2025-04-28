@@ -47,7 +47,6 @@ function handleDbConnection() {
 
 handleDbConnection();
 
-// Login route
 app.post('/login', (req, res) => {
     console.log("Login request received:", req.body);
 
@@ -67,7 +66,6 @@ app.post('/login', (req, res) => {
     });
 });
 
-// Register route
 app.post('/register', (req, res) => {
     console.log("Registration request received:", req.body);
 
@@ -112,7 +110,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-// New route to create a post
 app.post('/api/posts', upload.single('photo'), (req, res) => {
     console.log("Post creation request received:", req.body);
 
@@ -140,6 +137,18 @@ app.post('/api/posts', upload.single('photo'), (req, res) => {
         }
     );
 });
+
+app.get('/api/posts', (req, res) => {
+    const sql = "SELECT * FROM posts ORDER BY created_at DESC"; // newest first
+    db.query(sql, (err, data) => {
+        if (err) {
+            console.error("Error fetching posts:", err);
+            return res.json({ status: "error", message: "Database error" });
+        }
+        return res.json({ status: "success", data: data });
+    });
+});
+
 
 app.listen(8081, () => {
     console.log('Server is running on port 8081');
