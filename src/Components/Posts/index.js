@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-function Dashboard() {
+function Posts() {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -38,4 +38,4 @@ function Dashboard() {
     );
 }
 
-export default Dashboard;
+export default Posts;

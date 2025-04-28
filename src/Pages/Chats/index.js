@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 
-// Dummy users
 const users = [
   { id: 1, name: 'Nurse Man' },
   { id: 2, name: 'Falcha Putli' },
@@ -10,7 +9,6 @@ const users = [
   { id: 4, name: 'Kushal Das' },
 ];
 
-// Dummy chats
 const chatsData = {
   1: [
     { id: 1, sender: 'them', text: 'Are you selling?' },

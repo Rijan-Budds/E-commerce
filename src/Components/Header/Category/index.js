@@ -10,10 +10,8 @@ const Category = () => {
     }
   };
 
-  // Optional: Auto-scroll to keep focused item visible
   useEffect(() => {
     const handleScroll = () => {
-      // You can add logic here to handle scroll events if needed
     };
 
     const container = scrollContainerRef.current;
