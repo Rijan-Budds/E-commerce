@@ -78,7 +78,6 @@ const Header = () => {
         </div>
 
         <Navigation />
-        <Category />
       </div>
     </>
   );
