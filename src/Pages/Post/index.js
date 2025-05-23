@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const PostCreation = () => {
@@ -15,6 +15,13 @@ const PostCreation = () => {
   const [preview, setPreview] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+    useEffect(() => {
+      const isLoggedIn = localStorage.getItem('isLoggedIn');
+      if (!isLoggedIn) {
+        navigate('/login');
+      }
+    }, [navigate]);
 
   const validateStep = (currentStep) => {
     const newErrors = {};
