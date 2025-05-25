@@ -1,14 +1,30 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
     if (!isLoggedIn) {
       navigate("/login");
+      return;
     }
+
+    axios
+      .get("http://localhost:8081/api/profile")
+      .then((response) => {
+        if (response.data.status === "success") {
+          setProfile(response.data.data);
+        } else {
+          console.error("Failed to fetch profile");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching profile:", error);
+      });
   }, [navigate]);
 
   const handleLogout = () => {
@@ -20,12 +36,10 @@ export default function Profile() {
     navigate("/");
   };
 
-  // Mock user data - replace with actual data from your authentication system
-  const userData = {
-    username: "john_doe",
-    email: "john@example.com",
-    joinDate: "January 15, 2023",
-    adsPosted: 5
+  const userData = profile || {
+    username: "Loading...",
+    email: "Loading...",
+    adsPosted: 0,
   };
 
   return (
@@ -55,21 +69,30 @@ export default function Profile() {
             <div className="card-body">
               <div className="d-flex align-items-center mb-3">
                 <div className="bg-light rounded-circle p-3 me-3">
-                  <i className="bi bi-person-fill" style={{ fontSize: "2rem" }}></i>
+                  <i
+                    className="bi bi-person-fill"
+                    style={{ fontSize: "2rem" }}
+                  ></i>
                 </div>
                 <div>
-                  <h4 className="mb-0">{userData.username}</h4>
-                  <small className="text-muted">Member since {userData.joinDate}</small>
+                  <h4 className="mb-0">{profile?.fname || "Loading..."}</h4>
+
                 </div>
               </div>
               <ul className="list-group list-group-flush">
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  <span><i className="bi bi-envelope me-2"></i>Email</span>
+                  <span>
+                    <i className="bi bi-envelope me-2"></i>Email
+                  </span>
                   <span>{userData.email}</span>
                 </li>
                 <li className="list-group-item d-flex justify-content-between align-items-center">
-                  <span><i className="bi bi-megaphone me-2"></i>Ads Posted</span>
-                  <span className="badge bg-primary rounded-pill">{userData.adsPosted}</span>
+                  <span>
+                    <i className="bi bi-megaphone me-2"></i>Ads Posted
+                  </span>
+                  <span className="badge bg-primary rounded-pill">
+                    {userData.adsPosted}
+                  </span>
                 </li>
               </ul>
             </div>
@@ -83,15 +106,16 @@ export default function Profile() {
             </div>
             <div className="card-body">
               <p className="text-muted">
-                Your posted ads will appear here. You'll be able to edit, delete, or mark them as sold.
+                Your posted ads will appear here. You'll be able to edit,
+                delete, or mark them as sold.
               </p>
               <div className="alert alert-info">
                 <i className="bi bi-info-circle me-2"></i>
                 You haven't posted any ads yet. Start by creating your first ad!
               </div>
-              <button className="btn btn-primary">
+              <Link to="/post" className="btn btn-primary">
                 <i className="bi bi-plus-circle"></i> Create New Ad
-              </button>
+              </Link>
             </div>
           </div>
         </div>

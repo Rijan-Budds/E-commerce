@@ -24,7 +24,6 @@ function Posts() {
   const formatPostTime = (timestamp) => {
     if (!timestamp) return "recently";
     try {
-      // If timestamp is already a Date object or ISO string
       const date = new Date(timestamp);
       return formatDistanceToNow(date, { addSuffix: true });
     } catch (e) {
