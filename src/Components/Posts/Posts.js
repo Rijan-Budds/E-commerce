@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./Posts.css"; // Ensure this path is correct
+import "./Posts.css";
+import { formatDistanceToNow } from 'date-fns';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -19,6 +20,18 @@ function Posts() {
         console.error("Error fetching posts:", error);
       });
   }, []);
+
+  const formatPostTime = (timestamp) => {
+    if (!timestamp) return "recently";
+    try {
+      // If timestamp is already a Date object or ISO string
+      const date = new Date(timestamp);
+      return formatDistanceToNow(date, { addSuffix: true });
+    } catch (e) {
+      console.error("Error formatting date:", e);
+      return "recently";
+    }
+  };
 
   return (
     <div className="posts-container">
@@ -44,7 +57,7 @@ function Posts() {
             </p>
             <p className="post-description">{post.description}</p>
             <p className="post-meta">
-              Posted just now · {post.location || "Unknown location"} · Seller
+              Posted {formatPostTime(post.created_at)} · {post.location || "Unknown location"} · Seller
               Name
             </p>
           </div>
