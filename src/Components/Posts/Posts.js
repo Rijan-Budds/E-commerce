@@ -37,13 +37,15 @@ function Posts() {
               <strong>Category:</strong> {post.category} |{" "}
               <strong>Condition:</strong> {post.conditions}
             </p>
+
             <p className="post-details">
               <strong>Price:</strong> Rs. {post.price} (
               {post.negotiable ? "Negotiable" : "Fixed"})
             </p>
             <p className="post-description">{post.description}</p>
             <p className="post-meta">
-              Posted just now · Location Placeholder · Seller Name
+              Posted just now · {post.location || "Unknown location"} · Seller
+              Name
             </p>
           </div>
         </div>

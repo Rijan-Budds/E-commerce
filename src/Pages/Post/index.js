@@ -1,70 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const PostCreation = () => {
   const [step, setStep] = useState(1);
   const [post, setPost] = useState({
-    title: '',
+    title: "",
     photo: null,
-    category: '',
-    conditions: '',
-    description: '',
-    price: '',
-    negotiable: false
+    category: "",
+    conditions: "",
+    description: "",
+    location: "",
+    price: "",
+    negotiable: false,
   });
-  const [preview, setPreview] = useState('');
+  const [preview, setPreview] = useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
-    useEffect(() => {
-      const isLoggedIn = localStorage.getItem('isLoggedIn');
-      if (!isLoggedIn) {
-        navigate('/login');
-      }
-    }, [navigate]);
+  useEffect(() => {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    if (!isLoggedIn) {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const validateStep = (currentStep) => {
     const newErrors = {};
-    
+
     if (currentStep === 1) {
-      if (!post.title.trim()) newErrors.title = 'Title is required';
-      if (!post.photo) newErrors.photo = 'Photo is required';
+      if (!post.title.trim()) newErrors.title = "Title is required";
+      if (!post.photo) newErrors.photo = "Photo is required";
     }
-    
+
     if (currentStep === 2) {
-      if (!post.category) newErrors.category = 'Category is required';
-      if (!post.conditions) newErrors.conditions = 'Condition is required';
-      if (!post.description.trim()) newErrors.description = 'Description is required';
+      if (!post.category) newErrors.category = "Category is required";
+      if (!post.conditions) newErrors.conditions = "Condition is required";
+      if (!post.description.trim())
+        newErrors.description = "Description is required";
     }
-    
+    if (currentStep === 3) {
+      if (!post.location.trim()) newErrors.location = "Location is required";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setPost(prev => ({
+    setPost((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === "checkbox" ? checked : value,
     }));
-    
+
     if (errors[name]) {
-      setErrors(prev => ({ ...prev, [name]: '' }));
+      setErrors((prev) => ({ ...prev, [name]: "" }));
     }
   };
 
   const handlePhotoChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      setPost(prev => ({ ...prev, photo: file }));
+      setPost((prev) => ({ ...prev, photo: file }));
       const reader = new FileReader();
       reader.onloadend = () => {
         setPreview(reader.result);
       };
       reader.readAsDataURL(file);
-      
+
       if (errors.photo) {
-        setErrors(prev => ({ ...prev, photo: '' }));
+        setErrors((prev) => ({ ...prev, photo: "" }));
       }
     }
   };
@@ -83,24 +88,24 @@ const PostCreation = () => {
     e.preventDefault();
     if (validateStep(3)) {
       const formData = new FormData();
-      Object.keys(post).forEach(key => {
+      Object.keys(post).forEach((key) => {
         formData.append(key, post[key]);
       });
 
       try {
-        const response = await fetch('http://localhost:8081/api/posts', {
-          method: 'POST',
+        const response = await fetch("http://localhost:8081/api/posts", {
+          method: "POST",
           body: formData,
-          credentials: 'include'
+          credentials: "include",
         });
         const data = await response.json();
         if (response.ok) {
-          navigate('/');
+          navigate("/");
         } else {
-          console.error('Error creating post:', data.message);
+          console.error("Error creating post:", data.message);
         }
       } catch (error) {
-        console.error('Network error:', error);
+        console.error("Network error:", error);
       }
     }
   };
@@ -117,9 +122,7 @@ const PostCreation = () => {
 
   return (
     <div className="post-creation">
-      <div className="progress-steps">
-        Step {step} of 3
-      </div>
+      <div className="progress-steps">Step {step} of 4</div>
 
       {step === 1 && (
         <div className="step">
@@ -131,26 +134,32 @@ const PostCreation = () => {
             onChange={handleChange}
             placeholder="Title"
             required
-            className={errors.title ? 'error' : ''}
+            className={errors.title ? "error" : ""}
           />
-          {errors.title && <span className="error-message">{errors.title}</span>}
-          
+          {errors.title && (
+            <span className="error-message">{errors.title}</span>
+          )}
+
           <input
             type="file"
             name="photo"
             onChange={handlePhotoChange}
             accept="image/*"
             required
-            className={errors.photo ? 'error' : ''}
+            className={errors.photo ? "error" : ""}
           />
-          {errors.photo && <span className="error-message">{errors.photo}</span>}
-          
-          {preview && <img src={preview} alt="Preview" className="preview-image" />}
-          
-          <button 
-            onClick={nextStep} 
+          {errors.photo && (
+            <span className="error-message">{errors.photo}</span>
+          )}
+
+          {preview && (
+            <img src={preview} alt="Preview" className="preview-image" />
+          )}
+
+          <button
+            onClick={nextStep}
             disabled={!isStepValid()}
-            className={!isStepValid() ? 'disabled' : ''}
+            className={!isStepValid() ? "disabled" : ""}
           >
             Next
           </button>
@@ -165,7 +174,7 @@ const PostCreation = () => {
             value={post.category}
             onChange={handleChange}
             required
-            className={errors.category ? 'error' : ''}
+            className={errors.category ? "error" : ""}
           >
             <option value="">Select Category</option>
             <option value="electronics">Apparels & Accessories</option>
@@ -187,46 +196,73 @@ const PostCreation = () => {
             <option value="clothing">Fresh vegetables and meat</option>
             <option value="clothing">Want to buy</option>
           </select>
-          {errors.category && <span className="error-message">{errors.category}</span>}
-          
+          {errors.category && (
+            <span className="error-message">{errors.category}</span>
+          )}
+
           <select
             name="conditions"
             value={post.conditions}
             onChange={handleChange}
             required
-            className={errors.conditions ? 'error' : ''}
+            className={errors.conditions ? "error" : ""}
           >
             <option value="">Select Condition</option>
             <option value="new">New</option>
             <option value="used">Used</option>
             <option value="refurbished">Refurbished</option>
           </select>
-          {errors.conditions && <span className="error-message">{errors.conditions}</span>}
-          
+          {errors.conditions && (
+            <span className="error-message">{errors.conditions}</span>
+          )}
+
           <textarea
             name="description"
             value={post.description}
             onChange={handleChange}
             placeholder="Description"
             required
-            className={errors.description ? 'error' : ''}
+            className={errors.description ? "error" : ""}
           />
-          {errors.description && <span className="error-message">{errors.description}</span>}
-          
+          {errors.description && (
+            <span className="error-message">{errors.description}</span>
+          )}
+
           <div className="button-group">
             <button onClick={prevStep}>Back</button>
-            <button 
-              onClick={nextStep} 
+            <button
+              onClick={nextStep}
               disabled={!isStepValid()}
-              className={!isStepValid() ? 'disabled' : ''}
+              className={!isStepValid() ? "disabled" : ""}
             >
               Next
             </button>
           </div>
         </div>
       )}
-
       {step === 3 && (
+        <div className="step">
+          <h2>Location </h2>
+          <input
+            type="text"
+            name="location"
+            value={post.location}
+            onChange={handleChange}
+            placeholder="Location"
+            required
+            className={errors.location ? "error" : ""}
+          />
+          {errors.location && (
+            <span className="error-message">{errors.location}</span>
+          )}
+
+          <div className="button-group">
+            <button onClick={prevStep}>Back</button>
+            <button onClick={nextStep}>Next</button>
+          </div>
+        </div>
+      )}
+      {step === 4 && (
         <div className="step">
           <h2>Pricing</h2>
           <input

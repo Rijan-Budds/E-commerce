@@ -1,5 +1,5 @@
 const express = require('express');
-const mysql = require('mysql2'); 
+const mysql = require('mysql2');
 const cors = require('cors');
 const multer = require('multer');
 const path = require('path');
@@ -8,12 +8,13 @@ const fs = require('fs');
 const app = express();
 
 app.use(express.json());
+
 const corsOptions = {
     origin: 'http://localhost:3000',
-    credentials: true,             
-  };
-  app.use(cors(corsOptions));
-  
+    credentials: true,
+};
+app.use(cors(corsOptions));
+
 app.use('/uploads', express.static('uploads'));
 
 let db;
@@ -113,7 +114,7 @@ const upload = multer({ storage });
 app.post('/api/posts', upload.single('photo'), (req, res) => {
     console.log("Post creation request received:", req.body);
 
-    const { title, category, conditions, description, price, negotiable } = req.body;
+    const { title, category, conditions, description, price, negotiable, location } = req.body;
     const photo = req.file ? req.file.filename : null;
 
     if (!title || !category || !conditions || !description || !price || !photo) {
@@ -121,13 +122,13 @@ app.post('/api/posts', upload.single('photo'), (req, res) => {
     }
 
     const insertSql = `
-        INSERT INTO posts (title, photo, category, conditions, description, price, negotiable)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO posts (title, photo, category, conditions, description, price, negotiable, location)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
     db.query(
         insertSql,
-        [title, photo, category, conditions, description, parseFloat(price), negotiable === 'true' ? 1 : 0],
+        [title, photo, category, conditions, description, parseFloat(price), negotiable === 'true' ? 1 : 0, location],
         (err, result) => {
             if (err) {
                 console.error("Query Error:", err);
@@ -139,7 +140,7 @@ app.post('/api/posts', upload.single('photo'), (req, res) => {
 });
 
 app.get('/api/posts', (req, res) => {
-    const sql = "SELECT * FROM posts ORDER BY created_at DESC"; // newest first
+    const sql = "SELECT * FROM posts ORDER BY created_at DESC";
     db.query(sql, (err, data) => {
         if (err) {
             console.error("Error fetching posts:", err);
@@ -148,7 +149,6 @@ app.get('/api/posts', (req, res) => {
         return res.json({ status: "success", data: data });
     });
 });
-
 
 app.listen(8081, () => {
     console.log('Server is running on port 8081');
