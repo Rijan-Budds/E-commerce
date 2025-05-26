@@ -12,6 +12,7 @@ const PostCreation = () => {
     location: "",
     price: "",
     negotiable: false,
+    user_id: "" // Added user_id field
   });
   const [preview, setPreview] = useState("");
   const [errors, setErrors] = useState({});
@@ -19,8 +20,13 @@ const PostCreation = () => {
 
   useEffect(() => {
     const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    
     if (!isLoggedIn) {
       navigate("/login");
+    } else if (userData) {
+      // Set the user_id from logged-in user
+      setPost(prev => ({ ...prev, user_id: userData.id }));
     }
   }, [navigate]);
 
@@ -88,8 +94,14 @@ const PostCreation = () => {
     e.preventDefault();
     if (validateStep(3)) {
       const formData = new FormData();
+      
+      // Append all fields including user_id
       Object.keys(post).forEach((key) => {
-        formData.append(key, post[key]);
+        if (key === "negotiable") {
+          formData.append(key, post[key] ? "1" : "0");
+        } else {
+          formData.append(key, post[key]);
+        }
       });
 
       try {
@@ -98,11 +110,12 @@ const PostCreation = () => {
           body: formData,
           credentials: "include",
         });
-        const data = await response.json();
+        
         if (response.ok) {
           navigate("/");
         } else {
-          console.error("Error creating post:", data.message);
+          const errorData = await response.json();
+          console.error("Error creating post:", errorData.message);
         }
       } catch (error) {
         console.error("Network error:", error);

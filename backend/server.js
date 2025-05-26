@@ -139,14 +139,20 @@ app.post('/api/posts', upload.single('photo'), (req, res) => {
     );
 });
 
+// Update your /api/posts endpoint to join with login table
 app.get('/api/posts', (req, res) => {
-    const sql = "SELECT * FROM posts ORDER BY created_at DESC";
-    db.query(sql, (err, data) => {
+    const sql = `
+        SELECT posts.*, login.fname as seller_name 
+        FROM posts
+        LEFT JOIN login ON posts.user_id = login.id
+        ORDER BY posts.created_at DESC
+    `;
+    db.query(sql, (err, results) => {
         if (err) {
-            console.error("Error fetching posts:", err);
-            return res.json({ status: "error", message: "Database error" });
+            console.error("Database error:", err);
+            return res.status(500).json({ error: "Database error" });
         }
-        return res.json({ status: "success", data: data });
+        res.json(results);
     });
 });
 

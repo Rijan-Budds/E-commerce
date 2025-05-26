@@ -1,40 +1,23 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./Posts.css";
-import { formatDistanceToNow } from 'date-fns';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8081/api/posts")
-      .then((response) => {
-        if (response.data.status === "success") {
-          setPosts(response.data.data);
-        } else {
-          console.error("Failed to fetch posts");
-        }
+    axios.get("http://localhost:8081/api/posts")
+      .then(response => {
+        setPosts(response.data);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Error fetching posts:", error);
       });
   }, []);
 
-  const formatPostTime = (timestamp) => {
-    if (!timestamp) return "recently";
-    try {
-      const date = new Date(timestamp);
-      return formatDistanceToNow(date, { addSuffix: true });
-    } catch (e) {
-      console.error("Error formatting date:", e);
-      return "recently";
-    }
-  };
-
   return (
     <div className="posts-container">
-      {posts.map((post) => (
+      {posts.map(post => (
         <div key={post.id} className="post-card">
           {post.photo && (
             <img
@@ -44,20 +27,14 @@ function Posts() {
             />
           )}
           <div className="post-card-content">
-            <h3 className="post-title">{post.title}</h3>
-            <p className="post-details">
-              <strong>Category:</strong> {post.category} |{" "}
-              <strong>Condition:</strong> {post.conditions}
-            </p>
-
-            <p className="post-details">
-              <strong>Price:</strong> Rs. {post.price} (
-              {post.negotiable ? "Negotiable" : "Fixed"})
-            </p>
-            <p className="post-description">{post.description}</p>
+            <h3>{post.title}</h3>
+            <p>Category: {post.category} | Condition: {post.conditions}</p>
+            <p>Price: Rs. {post.price} ({post.negotiable ? "Negotiable" : "Fixed"})</p>
+            <p>{post.description}</p>
             <p className="post-meta">
-              Posted {formatPostTime(post.created_at)} · {post.location || "Unknown location"} · Seller
-              Name
+              Posted on {new Date(post.created_at).toLocaleString()} · 
+              {post.location || "Unknown location"} · 
+              Seller: {post.seller_name || "Unknown"}
             </p>
           </div>
         </div>
